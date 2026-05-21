@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>요소복제</title>
+</head>
+<style>
+    section{
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        background-color: lightgray;
+    }
+    article{
+        display: inline-block;
+        width: 300px;
+        height: 300px;
+        background-color: antiquewhite;
+    }
+    div{
+        width: 100px;
+        height: 100px;
+        background-color: #e33f3f;
+    }
+</style>
+<body>
+    <section>
+        <div>DIV입니다요</div>
+    </section>
+    <article>
+        <span>ARTICLE임</span>
+    </article>
+    <button type="button">붙여넣어!</button>
+</body>
+</html>
+<script>
+    let button = document.querySelector('button');
+    let section = document.querySelector('section');
+    let article = document.querySelector('article');
+    // 버튼을 누르면 article 안에 새로운 DIV를 만든다
+    button.onclick = () => {
+        // let newDiv = document.createElement('div');
+        // newDiv.textContent = '새로운 DIV';
+        let cloned = section.cloneNode(true);
+        article.appendChild(cloned);
+    }
+
+
+
+
+
+
+</script>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트 처리 실습</title>
+</head>
+<style>
+    section{
+        width: 300px;
+        height: 300px;
+        border: 10px solid black;
+        background-color: darkgray;
+    }
+    article{
+        width: 300px;
+        height: 300px;
+        border: 1px solid black;
+    }
+</style>
+<body>
+    <section></section>
+    <article></article>
+    <button type="button">복사!</button>
+</body>
+</html>
+
+
+<script>
+    // 문제1. section을 클릭했을 때 section의 배경색을 바꾸세요.
+    // 문제2. section을 클릭했을 때 border의 굵기를 2px로, 선을 dashed 로 변경하세요.
+    // 문제3. section을 클릭했을 때 article의 배경색을 바꾸세요.
+    // 문제4. article을 클릭했을 때, article을 section과 동일한 배경색, 동일한 border로 변경하세요
+    // getComputedStyle() 사용해야 함
+    // 문제5. button을 눌렀을 때, 현재 section태그를 복사해서 동일한 section을 body 안에 생성하세요.
+    let sec = document.querySelector('section');
+    let art = document.querySelector('article');
+    let btn = document.querySelector('button');
+    
+    sec.onclick = () => {
+        sec.style.backgroundColor = 'red';
+        sec.style.border = '12px dashed black';
+        art.style.backgroundColor = 'blue';
+        // sec.style.borderStyle = 'dashed';
+        // sec.style.borderWidth = '2px';
+    }
+
+    art.onclick = () => {
+        art.style.backgroundColor = getComputedStyle(sec).backgroundColor;
+        art.style.border = getComputedStyle(sec).border;
+    }
+    
+    btn.onclick = () => {
+        let cloned = sec.cloneNode();
+        document.body.appendChild(cloned);
+    }
+
+
+</script>
+
+
+
+
+
+

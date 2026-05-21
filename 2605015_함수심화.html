@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    kljsdjlksdgjsdlkgjgsdlkgsdjlk
+</body>
+</html>
+<script>
+    // 리터럴 방식
+    let func1 = function (){
+        console.log('func1 실행');
+    }
+    func1();
+    // 화살표함수 사용
+    let func2 = () => {
+        console.log('func2 실행');
+    }
+    func2();
+    // 화살표 함수에 인수 전달하기
+    let func3 = (a, b) => {
+        console.log(`a: ${a} / b: ${b}`)
+    }
+    func3(100, 200);
+    // 함수 정의문 () 안에 변수가 하나만 있으면 () 생략 가능
+    let func4 = a => {
+        console.log(`func4: ${a}`);
+    }
+    func4(100);
+    // 실행할 코드가 한 줄만 있으면 {} 생략 가능
+    let func5 = a => console.log(`func5: ${a}`);
+    func5(100);
+
+    let func6 = () => {
+        return "Func6의 결과^-^";
+    }
+    let result = func6();
+    console.log(result);
+    // 코드가 한 줄 밖에 없어서 {} 를 생략했는데, return 만 있다면 return 도 생략해야 한다
+    let func7 = () => "Func7의 결과^-^";
+    let result3 = func7();
+    console.log(result3);
+    ///////////////////////////////////////////////////////////////////
+    // a와 b에 데이터를 입력받아서, a + b 를 return 하는 함수를 화살표 함수로 정의하자.
+    let func8 = (a, b) => a + b;
+    let result2 = func8(100, 200);
+    console.log(result2);
+
+    console.log( func8(100, 200) + func8(1, 2));
+    ///////////////////////////////////////////////////
+    /// 클래스의 정의 .. ?!
+    class Person{
+        constructor(){
+            this.name = "홍길동";
+            this.age = 50;
+        }
+    }
+    let 아담 = new Person();
+    아담.name = "아담";
+    console.log(아담);
+    let 이브 = new Person();
+    console.log(이브);
+    ///////////////////////////////////////////
+    // 객체의 key는 무조건 문자열로 된다!
+    let p = {
+        "name": "홍길동",
+        age: 20 // 문자열로 안해도 자동으로 문자열로 들어가요
+    }
+    p["name"]; p.name; // '.' 은 어떤 데이터 안에 들어있다는 표현
+    console.log( p["name"] );
+    // console.log( p."name" )
+    // p[age]; // age 변수를 사용하려고 함 ! 에러!
+    p["age"]; p.age; // key는 무조건 문자열이에요!
+    //////////////////////////////////////////////////////////
+    function Computer() {
+        this.serial = "";
+        this.price = 0;
+    }
+    let com1 = new Computer();
+    console.log(com1);
+    ///////////////////////////////////////////////////////////
+    let arr = [100, 200, 300];
+    console.log(arr);
+    let v0 = arr[0];
+    console.log(v0);
+    console.log( arr["length"] );
+    arr[10] = 1000;
+    arr.push(400);
+    console.log(arr);
+
+
+
+
+</script>

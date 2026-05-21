@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function solution(money) {
+        let count = 0; // 음료수 개수
+        let change = money;
+        while(change > 0){
+            console.log(`음료수 = ${count}개, 잔돈 = ${change}원`)
+            count += 1
+            change -= 5500;
+        }
+        if(money % 5500 === 0){
+            return [count, change];
+        }else{
+            return [count-1, change+5500];
+        }
+    }
+    var result = solution(5500);
+    console.log(result);
+    var result = solution(15000);
+    console.log(result);
+
+
+
+
+
+
+
+</script>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var flag = true; // 일단 전부 짝수라고 생각하자
+    var arr = [1,23,5,1365,356,236246,462,2];
+    for(let i = 0; i < arr.length; i++){
+        let data = arr[i];
+        if(data % 2 !== 0){
+            flag = false;
+        }
+    }
+    // console.log(flag);
+    /////////////////////////////////////////////
+    function func1(number){
+        if(number % 2 === 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    var arr = [2,4,2,44,4];
+    var result = arr.every(func1);
+    console.log(`every의 결과: ${result}`);
+    /////////////////////////////////////////////////////////
+    var arr = [2,4,2,44,4];
+    var result = arr.every( number => number % 2 === 0  );
+    console.log(`every의 결과: ${result}`);
+    ////////////////////////////////////////////////////////////
+    var arr = [12,3,451,5,66,432,643,643,3457,3457,457,45];
+    var result = [];
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] % 3 === 0){
+            result.push(arr[i]);
+        }
+    }
+    console.log(result);
+    ////////////////////////////////////////////////////////////
+    var arr = [12,3,451,5,66,432,643,643,3457,3457,457,45];
+    // return true가 되는 값만 가져감
+    function func2(number){
+        if(number % 3 === 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    var result = arr.filter(func2);
+    console.log(`filter의 결과: `, result);
+    ////////////////////////////////////////
+    var arr = [123,45,15,3];
+    // function func3(number){
+    //     console.log(number);
+    // }
+    arr.forEach( number => {
+        console.log(number);
+    } );
+    /////////////////////////////////////////
+    var arr = [123,23,125,125,215];
+    var result = 0;
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] % 5 === 0){
+            result = arr[i];
+            break;
+        }
+    }
+    //////////////////////////////////////////
+    var arr = [123,23,125,125,215];
+    function func4(number){
+        if(number % 5 === 0){
+            return true;
+        }
+        return false;
+    }
+    var result = arr.find(func4);
+    /////////////////////////////////////////////
+    var arr = [1,2,3,4,5,6,7,8,9,10];
+    var result = [];
+    for(let i = 0; i < arr.length; i++){
+        let data = arr[i] * 10;
+        result.push(data);
+    }
+    ////////////////////////////////////////////
+    var arr = [1,2,3,4,5,6,7,8,9,10];
+    function func5(number) {
+        return number * 10;
+    }
+    var result = arr.map(func5);
+    console.log(result);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

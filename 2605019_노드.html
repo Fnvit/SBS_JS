@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>노드</title>
+</head>
+<style>
+    #number_input{
+        width:200px;
+    }
+</style>
+<body>
+    <div>DIV입니다</div>
+    <span>SPAN입니다</span>
+    <ul>
+        <li>LI1입니다</li>
+        <li>LI2입니다</li>
+    </ul>
+
+    <input type="text" class="text_input">
+    <input type="password">
+    <input type="number" id="number_input">
+    <input type="text" class="text_input">
+
+
+</body>
+</html>
+<script>
+    let body = window.document.body;
+    let firstElem = body.firstElementChild; // body의 첫 자식 요소를 가져와
+    let nextElem = firstElem.nextElementSibling; // 내 다음 요소 가져와
+    console.log(body);
+    console.log(firstElem);
+    console.log(nextElem);
+    /////////////////////////////////////////////
+    let ul = document.getElementsByTagName('ul');
+    console.log(ul);
+    let li = document.getElementsByTagName('li');
+    console.log(li);
+    let p = document.getElementsByTagName('p');
+    console.log(p);
+    let arr = [110,111,112];
+    arr[1] // 111
+    ///////////////////////////////////////////////
+    // Vanilla java script
+    let inputs = document.getElementsByTagName('input');
+    console.log(inputs);
+    console.log( inputs[2] );
+    ///////
+    let numberInput = document.getElementById('number_input');
+    console.log(numberInput);
+    ///////
+    let textInputs = document.getElementsByClassName('text_input');
+    console.log(textInputs);
+    ///////////////////////////////////////////////////////////
+    document.querySelector('#number_input');
+    let i = document.querySelector('input');
+    console.log(i);
+
+    let ii = document.querySelectorAll('input');
+    console.log(ii);
+
+
+</script>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS 조작</title>
+</head>
+<style>
+    #s1{
+        width: 200px;
+        height: 200px;
+        background-color: gainsboro;
+    }
+    section{
+        width: 111px;
+        color: red;
+    }
+
+</style>
+<body>
+    <section id="s1">
+        SECTION!
+    </section>
+</body>
+</html>
+<script>
+    let s1 = document.querySelector('#s1');
+    s1.style.backgroundColor = '#F0A';
+    s1.style.fontSize = '24px';
+    // let w = s1.style.width;
+    // console.log(w);
+
+    let w = getComputedStyle(s1).width;
+    let r = w.replaceAll('px', '');
+    let rNum = +r;
+    console.log(rNum + 100);
+    s1.style.width = `${rNum + 100}px`;
+    // s1.style.height = '300px';
+
+
+
+
+
+
+</script>

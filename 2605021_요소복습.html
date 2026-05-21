@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>요소복습</title>
+</head>
+<body>
+    <ul>
+        <li class="list">1번</li>
+        <li>2번</li>
+        <li class="list">3번</li>
+        <li>4번</li>
+        <li class="list">5번</li>
+    </ul>
+
+    <input type="text">
+</body>
+</html>
+<script>
+    // get형식은 변수에 넣으세요
+    let ulElem = document.querySelector('ul');
+    ulElem.style.backgroundColor = '#e4b4b4';
+
+    let leElems = document.querySelectorAll('li');
+    let leElem2 = leElems[1];
+    leElem2.style.backgroundColor = 'black';
+    leElem2.style.color = 'white';
+
+    // list 클래스를 가진 요소들만 전부 가져오기!
+    let listElems = document.querySelectorAll('.list');
+    for(let i = 0; i < listElems.length; i++){
+        listElems[i].style.fontSize = '24px';
+    }
+    /////////////////////////////////////////////////////////
+    let inputElem = document.querySelector('input');
+    inputElem.setAttribute('readonly', '');
+    inputElem.setAttribute('value', '테스트!');
+    // 문서에 input 태그를 새로 생성할게요
+    // 생성한 요소를 변수에 가져옵니다. 변수에 안가져오면 나중에 어떻게 사용?
+    let newInputElem = document.createElement('input');
+    // 문서의 특정 위치에 넣어줘야(배치) 하는데? -> 기준점 필요!
+    // 어떤 요소의 자식으로 넣는거(배치) ok.
+    /// 문서의 body 태그 안에 자식으로 넣을게요(배치할게요).
+    document.body.appendChild( newInputElem );
+    /////////////////////////////////////////////////////////
+    /// 아까 가져왔던 li 들 중에 3번 index 요소를 문서에서 제거하겠습니다
+    leElems[3].remove();
+
+
+
+</script>
+
+
+
+
+

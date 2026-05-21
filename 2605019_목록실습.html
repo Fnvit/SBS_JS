@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>목록 관리^0^</h1>
+    목록: <input type="text" value="목록이당"> <button>추가</button>
+    <section>
+        <div>목록을 추가하세요~</div>
+<!--        <div>목록1</div>-->
+<!--        <div>목록2</div>-->
+    </section>
+</body>
+</html>
+<script>
+    let input = document.querySelector('input');
+    let button = document.querySelector('button');
+    let section = document.querySelector('section');
+    let count = 1;
+    button.onclick = c;
+
+    function c(){
+        let div = document.createElement('div');
+        div.textContent = `${count}: ${input.value}`;
+        count++;
+        section.appendChild(div);
+        input.value = '';
+        input.focus();
+    }
+    // button을 클릭하면 c가 실행된다!
+    
+
+</script>
+
+
+
+

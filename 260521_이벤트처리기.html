@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트처리기</title>
+</head>
+<style>
+    section, article, div, main {
+        width: 300px;
+        height: 300px;
+        border: 1px solid black;
+        background-color: #e33f3f;
+    }
+</style>
+<body>
+    <section onclick=" alert('눌렸음ㅋ'); "></section>
+    <article></article>
+    <div></div>
+    <main></main>
+</body>
+</html>
+<script>
+    function article_clicked(){
+        alert('아티클 클릭임');
+    }
+    ///////////// 2번 방식
+    let article = document.querySelector('article');
+    // 함수의 이름을 작성해야 함. 어떤 함수를 실행해야하는지만 알려주면 되기 때문
+    article.onclick = article_clicked;
+    ///////////// 3번 방식
+    function div_clicked(){
+        alert('div 클릭임');
+    }
+    let div = document.querySelector('div');
+    div.addEventListener('click', div_clicked);
+    /////////////////////////////////////////////
+    let main = document.querySelector('main');
+    // 화살표함수 버전 => 이것만 연습 많이하기
+    // main.onclick = () => {
+    //     alert('main 클릭됨!111111111111111111');
+    // };
+    // main.onclick = () => {
+    //     alert('main 클릭됨!222222222222222222');
+    // };
+    // 화살표함수 버전
+    main.addEventListener('click', () => {
+        alert('main 클릭됨 111111111111111111111111111');
+    });
+    main.addEventListener('click', () => {
+        alert('main 클릭됨 2222222222222222222222222222');
+    });
+
+
+
+</script>

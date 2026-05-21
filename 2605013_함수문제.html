@@ -36,9 +36,14 @@
     ///////////////////////////////////////////////
     // 700원짜리 음료수를 몇 개 뽑을 수 있는지 모든 경우의 수 출력하기
     function vending_machine(money){
-        
+        let count = 0; // 음료수 개수
+        while(money > 0){
+            console.log(`음료수 = ${count}개, 잔돈 = ${money}원`)
+            count += 1
+            money -= 700;
+        }
     }
-    vending_machine(3000);
+    vending_machine(222);
     // 음료수 = 0개, 잔돈 = 3000원
     // 음료수 = 1개, 잔돈 = 2300원
     // 음료수 = 2개, 잔돈 = 1600원

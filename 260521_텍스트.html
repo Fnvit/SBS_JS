@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>텍스트 조작</title>
+</head>
+<body>
+    <section>
+        <div>
+            DIV입니다ㅋ
+        </div>
+        <ul>
+            <li>LI1</li>
+            <li>LI2</li>
+        </ul>
+    </section>
+
+    <article>
+        <div>ARTICLE의 DIV당</div>
+    </article>
+</body>
+</html>
+<script>
+    let section = document.querySelector('section');
+
+    let stc = section.textContent;
+    let sit = section.innerText;
+    let sih = section.innerHTML;
+    console.log(`stc: ${stc}`);
+    console.log(`sit: ${sit}`);
+    console.log(`sih: ${sih}`);
+    ////////////////////////////////////
+    let article = document.querySelector('article');
+    // article 내부 싹 다 지우고 글자 적어버림. 단순 글자로 동작
+    // article.textContent = '   <b>ARTICLE이당</b>   ';
+    // article.innerText = '   <b>ARTICLE이당</b>    ';
+    
+    // innerHTML 은 내부 싹 지우고 태그를 넣어버림! 태그로서 적용됨
+    article.innerHTML = '   <b>ARTICLE이당</b>    ';
+
+</script>
+
+
+
+
+
+
