@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>마우스 이벤트</title>
+</head>
+<style>
+    section{
+        width: 300px;
+        height: 300px;
+        background-color: brown;
+    }
+</style>
+<body>
+    <section></section>
+</body>
+</html>
+<script>
+    let sec = document.querySelector('section');
+    sec.onmouseup = () => {
+        console.log('mouseup');
+    }
+    sec.onmousedown = () => {
+        console.log('onmousedown');
+    }
+    sec.onmouseenter = () => {
+        console.log('요소로 들어옴');
+    }
+    sec.onmouseout = () => {
+        console.log('요소에서 나감');
+    }
+    sec.onmouseover = () => {
+        console.log('요소 위에 있음');
+    }
+    // sec.onmousemove = () => {
+    //     console.log('요소 위에서 움직임');
+    // }
+
+
+
+
+
+
+
+</script>

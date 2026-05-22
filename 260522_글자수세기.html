@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>글자수세기</title>
+</head>
+<style>
+    .calc_char_length{
+        display: flex;
+        flex-direction: column;
+        width: 500px;
+        border: 1px solid black;
+        border-radius: 8px;
+        padding: 24px;
+    }
+    .calc_char_length > label {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+    .calc_char_length #char_area{
+        height: 200px;
+        resize: none;
+        font-size: 20px;
+        border: none;
+        outline: none;
+    }
+    .calc_char_length .blank{
+        display: inline-block;
+        font-size: 18px;
+        margin-right: 12px;
+    }
+    .calc_char_length .blank > b{
+        display: block;
+        color: darkblue;
+    }
+</style>
+<body>
+    <section class="calc_char_length">
+        <label for="char_area">글자수세기</label>
+        <textarea id="char_area"></textarea>
+        <div>
+            <div class="blank">
+                <span>공백포함</span>
+                <b>0</b>
+            </div>
+            <div class="blank">
+                <span>공백제외</span>
+                <b>0</b>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+<script>
+    let textarea = document.querySelector('#char_area');
+    let bs = document.querySelectorAll('.calc_char_length b');
+
+    textarea.oninput = () => {
+        bs[0].textContent = textarea.value.length;
+        bs[1].textContent = textarea.value.replaceAll(' ', '').length;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

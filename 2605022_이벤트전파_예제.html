@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    section{
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        width: 100%;
+        height: 300px;
+        background-color: blue;
+        transition-duration: 1s;
+    }
+    div{
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+        text-align: center;
+        margin: 0 10px;
+        cursor: pointer;
+        transition-delay: 1s;
+        transition-duration: 1s;
+    }
+</style>
+<body>
+    <section>
+        <div class="w-80">Width: 80%</div>
+        <div class="w-60">Width: 60%</div>
+        <div class="w-40">Width: 40%</div>
+    </section>
+</body>
+</html>
+<script>
+    let section = document.querySelector('section');
+    let divs = document.querySelectorAll('div');
+    let widths = [80, 60, 40];
+    for (let i = 0; i < divs.length; i++) {
+        let div = divs[i];
+        div.onclick = () => {
+            // 방법1
+            // section.style.width = (80 - i * 20) + '%';
+            // 방법2
+            // section.style.width = widths[i] + '%';
+            // 방법3
+            let clazz = div.getAttribute('class'); // w-80;
+            let w = clazz.split('-')[1]; //['w', '80']
+            section.style.width = w + '%';
+
+
+            div.style.backgroundColor = 'red';
+        }
+    }
+
+
+
+</script>

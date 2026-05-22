@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>키보드 이벤트</title>
+</head>
+<style>
+    section{
+        display: inline-block;
+        width: 300px;
+        height: 300px;
+        background-color: lightgray;
+        border: 1px solid black;
+    }
+    section:nth-child(1) {
+        background-color: red;
+    }
+    section:nth-child(2) {
+        background-color: blue;
+    }
+    section:nth-child(3) {
+        background-color: violet;
+    }
+    section:nth-child(4) {
+        background-color: green;
+    }
+
+
+</style>
+<body>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
+
+    <textarea></textarea>
+</body>
+</html>
+<script>
+    // 문제. window 객체에서 a s d f 각 키를 눌렀을 때, 키에 맞는 색상을 자신이 정해서,
+    // 각 section의 배경색을 변경하세요.
+    // 예시) a를 누르면 첫번째 section의 색이 빨강이 됩니다.
+    // 단, 어떤 키를 눌렀을 때, 해당 박스의 색만 변경되어야 하고,
+    // 나머지 박스는 색이 초기화되어야 합니다.
+    let sections = document.querySelectorAll('section');
+    let obj = [
+        {
+            originalBg: 'red',
+            changeBg: '#f69c9c',
+            key:'a'
+        },
+        {
+            originalBg: 'red',
+            changeBg: '#f69c9c',
+            key:'a'
+        },
+        {
+            originalBg: 'red',
+            changeBg: '#f69c9c',
+            key:'a'
+        },
+        {
+            originalBg: 'red',
+            changeBg: '#f69c9c',
+            key:'a'
+        },
+    ]
+    
+    // 원래 색들을 저장해 놓기
+    let originalBgs = ['red', 'blue', 'violet', 'green'];
+    // 변경할 색들을 저장해 놓기
+    let changeBgs = ['#f69c9c', '#9dc0ff', '#e2a7ff', '#a7ff9b'];
+    // 각 section에 맞는 key들을 저장해 놓기
+    let keys = ['a', 's', 'd', 'f'];
+    /// 문서 에서 key 를 눌렀다
+    window.onkeydown = (event) => {
+        // 모든 section 의 색을 원래 색으로 변경한다. 무조건.
+        for(let i = 0; i < sections.length; i++) {
+            sections[i].style.backgroundColor = originalBgs[i];
+        }
+        // 눌린 key가 어떤 key인지 가져온다
+        let key = event.key;
+        for(let i = 0; i < sections.length; i++) {
+            // 만약, 눌린 key가 asdf 중 하나라면?
+            if(key === keys[i]){
+                // 해당 section만 색을 변경한다.
+                sections[i].style.backgroundColor = changeBgs[i];
+            }
+        }
+
+
+
+        // switch (key){
+        //     case 'a':
+        //         sections[0].style.backgroundColor = changeBgs[0];
+        //         sections[1].style.backgroundColor = originalBgs[1];
+        //         sections[2].style.backgroundColor = originalBgs[2];
+        //         sections[3].style.backgroundColor = originalBgs[3];
+        //         break;
+        //     case 's':
+        //         sections[0].style.backgroundColor = 'grey';
+        //         sections[1].style.backgroundColor = 'blue';
+        //         sections[2].style.backgroundColor = 'grey';
+        //         sections[3].style.backgroundColor = 'grey';
+        //         break;
+        //     case 'd':
+        //         break;
+        //     case 'f':
+        //         break;
+        // }
+    }
+
+    let textarea = document.querySelector('textarea');
+    textarea.onkeydown = (event) => {
+        console.log('keydown');
+        let key = event.key;
+        console.log(`눌린 key: ${key}`);
+    }
+    textarea.onkeyup = () => {
+        console.log('keyup')
+    }
+    // input 요소(input, textarea)에 value 가 변경되면 실행
+    // 데이터를 입력했거나, 체크박스 체크를 했거나.. 등등
+    textarea.oninput = () => {
+        let text = textarea.value; // 작성된 문자를 가져옴
+        console.log(text.length); // 문자의 길이는?
+    }
+
+
+</script>
+
+
+
+
+
+
+

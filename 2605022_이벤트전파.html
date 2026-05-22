@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 200px;
+        height: 200px;
+        background-color: #e33f3f;
+    }
+    #inner{
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+    }
+</style>
+<body>
+    <div id="outer">
+        <span>OUTER</span>
+        <div id="inner">INNER</div>
+    </div>
+</body>
+</html>
+<script>
+    let outer = document.querySelector('#outer');
+    let inner = document.querySelector('#inner');
+    ///// 아래처럼 가져와도 ok
+    // let divs = document.querySelectorAll('div');
+    // let outer = divs[0];
+    // let inner = divs[1];
+
+    // outer.onclick = (event) => {
+    //     console.log('outer clicked');
+    //     // 실제로 클릭된 요소 == target
+    //     console.log("target:", event.target);
+    //     // 현재 함수가 실행되고 있는 요소 == currentTarget
+    //     console.log("currentTarget:", event.currentTarget);
+    // }
+    // inner.onclick = (event) => {
+    //     console.log('inner clicked');
+    //     console.log("target:", event.target);
+    //     console.log("currentTarget:", event.currentTarget);
+    // }
+
+
+    outer.addEventListener('click', (event) => {
+        console.log('outer clicked');
+        // 실제로 클릭된 요소 == target
+        console.log("target:", event.target);
+        // 현재 함수가 실행되고 있는 요소 == currentTarget
+        console.log("currentTarget:", event.currentTarget);
+    }, false);
+
+    inner.addEventListener('click', (event) => {
+        // event.stopPropagation(); // 이벤트 전파를 취소함. 부모 태그 실행하지마
+
+        // 이벤트 전파를 취소함. 부모 태그 실행하지마 + inner의 다른 click 이벤트도 실행하지마
+        // event.stopImmediatePropagation();
+        console.log('inner clicked');
+        console.log("target:", event.target);
+        console.log("currentTarget:", event.currentTarget);
+    }, false);
+    ////////////////////////////// TMI
+    inner.addEventListener('click', (event) => {
+        console.log('inner 한번 더!');
+    }, false);
+
+</script>
+
+
+
+
+
+
+
+
+

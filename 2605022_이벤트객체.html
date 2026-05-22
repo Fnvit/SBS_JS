@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트 객체</title>
+</head>
+<style>
+    section{
+        width: 200px;
+        height: 200px;
+        background-color: #e33f3f;
+    }
+    img{
+        width: 200px;
+        aspect-ratio: 1 / 1;
+    }
+    article{
+        width: 300px;
+        height: 300px;
+        background-color: blue;
+    }
+    article > div{
+        position: relative;
+        transform: translateX(300px);
+        width: 100px;
+        height: 100px;
+        background-color: brown;
+    }
+</style>
+<body>
+    <section>
+        SECTION입니다
+    </section>
+
+    <a href="https://www.naver.com">네이버로 이동</a>
+    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNjAxMzFfMzEg%2FMDAxNzY5ODM4MjA3Mzkx.ni1JyNA73UZWa7uh8qlqM6G52s_DpkzNo4RavWkNaJgg.OH6ZtvcsoutsWppbyjEMt09FA42pciCTjTSAwfkuWWAg.PNG%2Fimage.png&type=sc960_832" alt="">
+
+    <article>
+        <div></div>
+    </article>
+</body>
+</html>
+<script>
+    let section = document.querySelector('section');
+    let a = document.querySelector('a');
+    let img = document.querySelector('img');
+    let article = document.querySelector('article');
+    article.onclick = () => {
+        console.log('article 클릭됨!');
+    }
+
+
+    a.onclick = (event) => {
+        event.preventDefault(); // a태그의 클릭 기본 동작을 취소한다.
+        // img.style.width = '2000px';
+    }
+    img.ondragstart = (event) =>{
+        event.preventDefault();
+    }
+
+    section.onclick = (event) => {
+        console.log(event);
+    };
+
+
+</script>
+
+
+
+
+
+
+
