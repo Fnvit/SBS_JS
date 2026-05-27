@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Embla 캐러셀</title>
+    <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
+    <script src="https://unpkg.com/embla-carousel-autoplay/embla-carousel-autoplay.umd.js"></script></head>
+<style>
+    .embla__viewport {
+        overflow: hidden;
+    }
+
+    .embla__container {
+        display: flex;
+        touch-action: pan-y pinch-zoom;
+    }
+
+    .embla__slide {
+        flex: 0 0 100%;
+        min-width: 0;
+    }
+</style>
+<body>
+    <div class="embla">
+        <div class="embla__viewport">
+            <div class="embla__container">
+                <div class="embla__slide">Slide 1</div>
+                <div class="embla__slide">Slide 2</div>
+                <div class="embla__slide">Slide 3</div>
+            </div>
+        </div>
+
+        <button class="embla__prev">Scroll to prev</button>
+        <button class="embla__next">Scroll to next</button>
+    </div>
+</body>
+</html>
+<script>
+    const wrapperNode = document.querySelector('.embla')
+    const viewportNode = wrapperNode.querySelector('.embla__viewport')
+    const prevButtonNode = wrapperNode.querySelector('.embla__prev')
+    const nextButtonNode = wrapperNode.querySelector('.embla__next')
+
+    const emblaApi = EmblaCarousel(viewportNode, { loop: false }, [
+        EmblaCarouselAutoplay()
+    ])
+
+    prevButtonNode.addEventListener('click', () => emblaApi.goToPrev(), false)
+    nextButtonNode.addEventListener('click', () => emblaApi.goToNext(), false)
+
+    emblaApi.plugins().autoplay?.play();
+</script>

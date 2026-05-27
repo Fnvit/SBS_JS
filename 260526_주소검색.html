@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>주소검색</title>
+    <script src="//t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</head>
+<style>
+    label{
+        display: block;
+    }
+    input{
+        width: 400px;
+    }
+</style>
+<body>
+    <div class="post_search">
+        <div>
+            <label><input type="text" placeholder="우편번호" readonly></label>
+            <button type="button">우편번호 검색</button>
+        </div>
+        <label><input type="text" placeholder="주소" readonly></label>
+        <label><input type="text" placeholder="상세주소"></label>
+    </div>
+
+</body>
+</html>
+<script>
+    const [postcodeInput, addrInput, dAddrInput] = document.querySelectorAll('.post_search input');
+    const postSearchButton = document.querySelector('.post_search button');
+    // 우편번호 검색버튼 혹은 우편번호 입력 창 클릭 시 검색 창 띄움
+    postcodeInput.onclick = open_post_search_window;
+    postSearchButton.onclick = open_post_search_window;
+
+    function open_post_search_window(){
+        new kakao.Postcode({
+            oncomplete: function(data) {
+                console.log(data)
+                const zoneCode = data['zoneCode'];
+                const jibunAddress = data['jibunAddress'];
+                const roadAddress = data['roadAddress'];
+                const buildingName = data['buildingName'];
+                
+                postcodeInput.value = zoneCode;
+                addrInput.value = `${roadAddress} (${jibunAddress})`;
+                dAddrInput.value = buildingName;
+            }
+        }).open();
+    }
+
+
+</script>

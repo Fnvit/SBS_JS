@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>요소 이동</title>
+</head>
+<style>
+    div{
+        width: 300px;
+        height: 300px;
+        background-color: rosybrown;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div></div>
+</body>
+</html>
+<script>
+    let div = document.querySelector('div');
+    // 요소에서 마우스 클릭한 위치
+    let initialMousePosX = 0;
+    let initialMousePosY = 0;
+    // 현재까지 움직인 거리
+    let offsetX = 0;
+    let offsetY = 0;
+
+    function mouse_move(event){
+        // 현재 위치 - 처음있었던 위치 => 이동한 거리
+        offsetX = event.clientX - initialMousePosX;
+        offsetY = event.clientY - initialMousePosY;
+        // 이동한 거리만큼 translate 로 요소를 이동시킴
+        div.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    }
+
+    // 마우스를 내리고 나면
+    div.addEventListener('mousedown', event => {
+        // 마우스를 클릭한 위치를 받아옴 ( +현재까지 이동한 거리도 추가 )
+        initialMousePosX = event.clientX - offsetX;
+        initialMousePosY = event.clientY - offsetY;
+
+        // 움직일때 mouse_move 함수가 동작하도록 설정함
+        div.addEventListener('mousemove', mouse_move);
+    });
+    // 이 문서 내의 어디서든 마우스를 떼면
+    window.addEventListener('mouseup', event => {
+        // div.onmousedown = null; // on으로 넣었을 경우는 null 넣으면 ok
+        // mousemove 이벤트에서 mouse_move 함수를 제거한다 => 이벤트 취소
+        div.removeEventListener('mousemove', mouse_move);
+    })
+
+</script>
+
+
+
+
+
+
+

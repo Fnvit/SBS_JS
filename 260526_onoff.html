@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ON OFF</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    li{
+        display: inline-block;
+        cursor: pointer;
+        padding: 14px;
+        font-size: 24px;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        &:hover{
+            background-color: black;
+            color: white;
+        }
+    }
+    li.active{
+        background-color: black;
+        color: white;
+    }
+    .a{
+        font-weight: bold;
+    }
+    div{
+        height: 200px;
+    }
+    .d1{
+        display: none;
+        background-color: #e33f3f;
+    }
+    .d2{
+        display: none;
+        background-color: darkblue;
+    }
+    .d3{
+        display: none;
+        background-color: greenyellow;
+    }
+    div.active{
+        display: block;
+    }
+</style>
+<body>
+    <ul>
+        <li class="a active">목록1</li>
+        <li class="a">목록2</li>
+        <li class="a">목록3</li>
+    </ul>
+
+    <section>
+        <div class="d1 active"></div>
+        <div class="d2 "></div>
+        <div class="d3 "></div>
+    </section>
+
+
+
+
+</body>
+</html>
+<script>
+    // function init(){
+    //     for(let j = 0; j < lies.length; j++){
+    //         lies[j].style.backgroundColor = 'white';
+    //         lies[j].style.color = 'black';
+    //     }
+    // }
+    //
+    // let lies = document.querySelectorAll('li');
+    // for(let i = 0; i < lies.length; i++){
+    //     lies[i].onclick = () => {
+    //         init();
+    //         lies[i].style.backgroundColor = 'black';
+    //         lies[i].style.color = 'white';
+    //     }
+    // }
+
+    function init(){
+        for(let j = 0; j < lies.length; j++){
+            // 현재 class 목록에서 active를 제거해줘
+            lies[j].classList.remove('active');
+            divs[j].classList.remove('active');
+        }
+    }
+    let lies = document.querySelectorAll('li');
+    let divs = document.querySelectorAll('div');
+    for(let i = 0; i < lies.length; i++){
+        lies[i].onclick = () => {
+            init();
+            // 원래 가지고 있던 클래스 목록에 active 를 추가해줘
+            lies[i].classList.add('active');
+            divs[i].classList.add('active');
+        }
+    }
+
+</script>
+
+
+
+
+

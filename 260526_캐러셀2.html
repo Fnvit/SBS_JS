@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>캐러셀</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .carousel_container{
+        position: relative;
+        width: 1000px;
+        height: 600px;
+        background-color: greenyellow;
+        overflow: hidden;
+    }
+    .carousel{
+        display: inline-flex;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        height: 100%;
+        background-color: darkblue;
+        cursor: pointer;
+    }
+    .carousel > .slide{
+        width: 1000px;
+        border: 1px solid black;
+        background-color: lightgray;
+    }
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .slide{
+        position: relative;
+    }
+    .slide > div{
+        position: absolute;
+        width: 70%;
+        left: 10px;
+        bottom: 10px;
+        background-color: rgba(0,0,0,0.4);
+        color: white;
+        font-size: 50px;
+    }
+    .button_container{
+        display: flex;
+        position: absolute;
+        padding: 0 20px;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .button_container > button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        font-size: 30px;
+        border-radius: 50%;
+        background-color: black;
+        color: white;
+        z-index: 99;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <section class="carousel_container">
+        <div class="button_container">
+            <button type="button">⬅</button>
+            <button type="button">➡</button>
+        </div>
+
+        <ul class="carousel">
+            <li class="slide">
+                <div>
+                    <h2>TITLE1</h2>
+                    <p>이건 파이리와 꼬부기의 싸움이다</p>
+                </div>
+                <img draggable="false" src="https://blog.kakaocdn.net/dna/tYmJ8/btqCn0Cvwne/AAAAAAAAAAAAAAAAAAAAAADz-F2RyvcKHR-D962utz_-bhd0r71fnv70i1-FCtBl/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1780239599&allow_ip=&allow_referer=&signature=ocnFJDGv1HGVtZfqQdddrDIfmJs%3D" alt="">
+            </li>
+            <li class="slide">
+                <div>
+                    <h2>TITLE2</h2>
+                    <p>리자드 진화</p>
+                </div>
+                <img draggable="false" src="https://mblogthumb-phinf.pstatic.net/MjAxOTAxMTFfNDgg/MDAxNTQ3MTg4MzU1ODU4.eEGkSQ6lQcU5dHXP9Q3yEjyM3KfqHxWQQynx1a2bvK0g.BVjSnyufz2kSAGxv58mo7JADKH1RZF60LetbaJ0ujtMg.JPEG.jurong25/20190111_152654.jpg?type=w800" alt="">
+            </li>
+            <li class="slide">
+                <div>
+                    <h2>TITLE3</h2>
+                    <p>리자몽 최종 진화</p>
+                </div>
+                <img draggable="false" src="https://i.namu.wiki/i/zEByLPgRtZ8wSwaXY9-cbZDCM_2k-SHm0N1nU8GfMYdxQ5GuvO8DZmrv-aHtMYcY8P-2obdb345KexwJWgGnFg.webp" alt="">
+            </li>
+        </ul>
+    </section>
+</body>
+</html>
+<script>
+    const carouselContainer = document.querySelector('.carousel_container');
+    const carousel = carouselContainer.querySelector('.carousel');
+    let slides = carousel.getElementsByClassName('slide');
+    const [leftBtn, rightBtn] = carouselContainer.querySelectorAll('.button_container > button');
+    const slideWidth = +getComputedStyle(carouselContainer).width.split('px')[0];
+    const slideMoveMillisecond = 1000;
+    let carouselMousePosition = {
+        startX: 0,
+        endX: 0,
+    }
+    let autoplay = true;
+
+    if(autoplay){
+        setInterval(() => {
+            move_right();
+        }, slideMoveMillisecond * 4);
+    }
+
+    function move_left(){
+        leftBtn.onclick = null;
+        carouselContainer.onmousedown = null;
+        carouselContainer.onmouseup = null;
+        let slide = slides[slides.length-1].cloneNode(true);
+        carousel.insertAdjacentElement('afterbegin', slide);
+        carousel.style.transform = `translateX(${-slideWidth}px)`;
+
+        setTimeout(() => {
+            carousel.style.transitionDuration = `${slideMoveMillisecond}ms`;
+            carousel.style.transform = `translateX(0px)`;
+            slides[slides.length-1].remove();
+            setTimeout(() => {
+                carousel.style.transitionDuration = '0s';
+                leftBtn.onclick = move_left;
+                carouselContainer.onmousedown = carousel_mouse_down;
+                carouselContainer.onmouseup = carousel_mouse_up;
+            }, slideMoveMillisecond);
+        }, 10);
+    }
+
+    function move_right(){
+        rightBtn.onclick = null;
+        carouselContainer.onmousedown = null;
+        carouselContainer.onmouseup = null;
+        let slide = slides[0].cloneNode(true);
+        carousel.insertAdjacentElement('beforeend', slide);
+        carousel.style.transitionDuration = `${slideMoveMillisecond}ms`;
+        carousel.style.transform = `translateX(${-slideWidth}px)`;
+        setTimeout(() => {
+            slides[0].remove();
+            carousel.style.transform = `translateX(0px)`;
+            carousel.style.transitionDuration = '0s';
+            rightBtn.onclick = move_right;
+            carouselContainer.onmousedown = carousel_mouse_down;
+            carouselContainer.onmouseup = carousel_mouse_up;
+        }, slideMoveMillisecond);
+    }
+
+    function carousel_mouse_down(e){
+        carouselMousePosition.startX = e.clientX;
+    }
+
+    function carousel_mouse_up(e){
+        carouselMousePosition.endX = e.clientX;
+        // 감도 조절: 사용자가 실수로 미세하게 움직인 경우는 무시 (픽셀 단위)
+        const threshold = 50;
+        const diffX = carouselMousePosition.startX - carouselMousePosition.endX;
+        if (Math.abs(diffX) > threshold) {
+            if (diffX > 0) {
+                move_right();
+            } else {
+                move_left();
+            }
+        }
+    }
+
+    carouselContainer.onmousedown = carousel_mouse_down;
+    carouselContainer.onmouseup = carousel_mouse_up;
+    leftBtn.onclick = move_left;
+    rightBtn.onclick = move_right;
+    console.log(carouselContainer)
+</script>
+
+
+
+
+
+

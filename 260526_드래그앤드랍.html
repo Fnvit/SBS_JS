@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>드래그 앤 드랍</title>
+</head>
+<style>
+    section, img{
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        background-color: #e33f3f;
+    }
+    .s1{
+        background-color: darkblue;
+    }
+    .s2{
+        background-color: olivedrab;
+    }
+    .s3{
+        background-color: brown;
+    }
+    .s4{
+        background-color: rosybrown;
+    }
+</style>
+<body>
+    <img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fdcimg1.dcinside.com%2Fviewimage.php%3Fno%3D24b0d769e1d32ca73deb86fa11d02831d16706cea37200d6da9182798772dc60f5bb2dcf1365ad59083aec6364f198429023378249cd769b075a876f61b33e6bb859baca94a822ecc3a36a68e0bcfa02308ce25ad9e20e6e8cc84138c610389a&type=sc960_832" alt="">
+    <section class="s1"></section>
+    <section class="s2"></section>
+    <section class="s3"></section>
+    <section class="s4"></section>
+</body>
+</html>
+<script>
+    let dragElem = null; // 현재 드래그 중인 요소를 저장해둘 변수
+    let sections = document.querySelectorAll('section');
+    // let bgs = [...sections].map(section => getComputedStyle(section).backgroundColor);
+    let bgs = []; // section의 기본 배경색을 저장하는 배열
+    // 처음 시작 시 section 들의 기본 배경색을 전부 가져와서 bgs에 넣기
+    for(let s of sections){
+        let c = getComputedStyle(s).backgroundColor;
+        bgs.push(c);
+    }
+    // 모든 section에게 동일한 동작을 부여하기
+    for(let i = 0; i < sections.length; i++) {
+        let section = sections[i];
+
+        section.draggable = true;
+        // section ('나')가 드래그 시작했을 때
+        section.ondragstart = () => {
+            dragElem = section; // 현재 드래그 중인 요소를 '나'로 변경함
+        }
+        section.ondragend = () => {
+            for(let j = 0; j < sections.length; j++) {
+                sections[j].style.backgroundColor = bgs[j];
+            }
+        }
+        // 드래그 중에 마우스가 내 안에 들어왔을 때
+        section.ondragenter = () => {
+            // 내 배경 색을 현재 드래그 중인 요소의 색으로 변경함
+            section.style.backgroundColor = getComputedStyle(dragElem).backgroundColor;
+        }
+    }
+</script>
+
+
+
+
+
+
+
+

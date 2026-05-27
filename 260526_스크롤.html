@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>스크롤</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    html{
+        scroll-behavior: smooth;
+    }
+    h1{
+        font-size: 7rem;
+        color: white;
+    }
+    section{
+        position: relative;
+        background-color: black;
+        padding: 100px 0;
+    }
+    section > div{
+        width: 300px;
+        height: 300px;
+        background-color: yellow;
+        position: absolute;
+        left: 0;
+        /*animation-name: move_box;*/
+        animation-duration: 1s;
+        animation-direction: alternate;
+    }
+    a{
+        font-size: 4rem;
+        border-radius: 12px;
+        padding: 10px;
+        border: 1px solid black;
+    }
+
+    @keyframes move_box {
+        from{
+            left: 0;
+        }
+        to{
+            left: 50%;
+        }
+    }
+
+
+
+</style>
+<body>
+    <a href="#title">'제목이당'으로 이동~</a>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <section id="title">
+        <h1>제목이당</h1>
+        <div></div>
+    </section>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</body>
+</html>
+<script>
+    let section = document.querySelector('section');
+    let div = section.querySelector('div');
+    // observer (문서 내의 어떤 요소를 지켜보고 있는 감시자)
+    // 1. 요소가 문서에 나타났을 때 실행할 함수
+    // 2. 추가 option (객체 형태)
+    let observerOptions = {
+        root: null, // 대상 요소를 감시할 기준이 되는 부모 영역 (기본값(null): 뷰포트)
+        rootMargin: '0px 0px 0px 0px', // 기준 영역(root)의 범위를 확장하거나 축소할 때 사용
+        threshold: 0.0 // 대상 요소가 얼마나 보여야 함수를 실행할 지는 결정하는 비율 (0 ~ 1)
+        // 0.5 => 화면에서 요소가 요소의 절반 정도 들어오면 실행, 0.0 => 1px이라도 화면에 보이면 실행
+    }
+    let observer = new IntersectionObserver(move, observerOptions);
+    observer.observe(section); // 옵저버야 section을 찾으면 move를 실행해줘 (감시해줘)
+    function move(entries, observer){
+        console.log('찾았다 까꿍!');
+        console.log(entries);
+        console.log(observer);
+        div.style.animationName = 'move_box';
+    }
+
+
+    // window.onscroll = () => {
+    //     console.log('scroll 중임...');
+    //     const top = section.getBoundingClientRect().top;
+    //     console.log(top);
+    //     if( top > 0 && top < 100 ){
+    //         div.style.animationName = 'move_box';
+    //     }
+    // }
+
+
+
+
+</script>
+
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트 위치</title>
+</head>
+<style>
+    div{
+        width: 300px;
+        height: 300px;
+        background-color: rosybrown;
+    }
+</style>
+<body>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+    <div></div>
+</body>
+</html>
+<script>
+    document.querySelector('div').onclick = (event) => {
+        // console.log('width:', event.width);
+        // console.log('height:', event.height);
+        console.log('screenX:', event.screenX);
+        console.log('screenY:', event.screenY);
+
+        console.log('pageX:', event.pageX);
+        console.log('pageY:', event.pageY);
+
+        console.log('clientX:', event.clientX);
+        console.log('clientY:', event.clientY);
+
+        console.log('offsetX:', event.offsetX);
+        console.log('offsetY:', event.offsetY);
+    }
+
+
+</script>
