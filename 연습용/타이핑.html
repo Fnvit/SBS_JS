@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>타이핑</title>
+</head>
+<style>
+
+    h1 {
+        /*display: inline-block;*/
+        font-size: 3rem;
+    }
+    div{
+        display: inline-block;
+        font-size: 3rem;
+    }
+
+    span{
+        display: block;
+        color: #e33f3f;
+        border-right: 2px solid black;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 0;
+        animation: blink 2s infinite, typing 2s steps(24) infinite;
+    }
+
+    @keyframes typing {
+        from{
+            width: 0;
+        }
+        to{
+            width: 100%;
+        }
+    }
+    @keyframes blink {
+        from {
+            border-color: transparent;
+        }
+        50%{
+            border-color: black;
+        }
+        to{
+            border-color: transparent;
+        }
+    }
+</style>
+<body>
+    <main>
+        <h1>
+            Kim's Portfolio
+        </h1>
+        <div>
+            <span></span>
+        </div>
+    </main>
+</body>
+</html>
+<script>
+    const texts = ['Frontend Developer', 'Web Publisher'];
+    const span = document.querySelector('span');
+    let index = 0;
+    setTimeout(() => {
+        span.style.width = '0';
+    }, 2000)
+    setInterval(() => {
+        span.textContent = texts[index];
+        if(index <= texts.length){
+            index++;
+        }else{
+            index = 0;
+        }
+    }, 2000);
+</script>
+
+
+
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    li{
+        border-bottom: 1px solid black;
+        padding: 4px 0;
+    }
+    span{
+        display: inline-block;
+        padding: 4px;
+        border-radius: 4px;
+        color: white;
+        background-color: cornflowerblue;
+    }
+    span.not_complete{
+        background-color: #e33f3f;
+    }
+</style>
+<body>
+    <button type="button">데이터 요청</button>
+    <section>
+        <ul>
+            <li>
+                <b>1:</b>
+                <b>TITLE</b>
+                <span>완료</span>
+            </li>
+        </ul>
+    </section>
+</body>
+</html>
+<script>
+    const button = document.querySelector('button');
+    const section = document.querySelector('section');
+    const ul = document.querySelector('ul');
+
+    // ul.insertAdjacentHTML('beforeend', '<h1>마지막자식!</h1>')
+    // ul.insertAdjacentHTML('afterbegin', '<h1>첫번째자식!</h1>')
+
+
+    button.onclick = () => {
+        // GET 요청 (브라우저 주소창에 쓰고 enter랑 같음)
+        fetch('https://koreanjson.com/todos')
+            .then( (r) => r.json() )
+            .then( (data) => {
+                ul.innerHTML = '';
+                for(let d of data) {
+                    const id = d['id']
+                    const title = d['title'];
+                    const completed =  d['completed'];
+                    const completedText = completed ? '완료' : '미완료';
+                    const completedClass = completed ? '' : 'not_complete';
+
+                    ul.insertAdjacentHTML('beforeend', `
+                        <li>
+                            <b>${id}:</b>
+                            <b>${title}</b>
+                            <span class="${completedClass}">${completedText}</span>
+                        </li>
+                    `)
+                }
+            });
+    }
+
+
+
+
+
+
+
+
+</script>

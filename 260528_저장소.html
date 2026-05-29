@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    FG: <input type="color"> BG: <input type="color"> <br>
+    <button>저장하기</button> <button>불러오기</button> <br>
+    <textarea></textarea>
+</body>
+</html>
+<script>
+    // 도메인(domain): 사이트의 주소 (http://localhost:63342/)
+    // const cookie = document.cookie;
+    // console.log(cookie);
+    // const date = new Date();
+    // let min = date.getMinutes();
+    // date.setMinutes(min + 1); // 시간을 1분 뒤로 설정
+    // console.log(date);
+    // document.cookie = `c=200;expires=${date.toUTCString()};`;
+    // for(const item of cookie.split(';')){
+    //     console.log(item);
+    //     const [key, value] = item.split('=');
+    //     console.log(key.trim());
+    //     console.log(value.trim());
+    //     // const i = item.split('=');
+    //     // const key = i[0]
+    //     // const value = i[1]
+    // }
+
+    localStorage.setItem('a', '100');
+    localStorage.setItem('b', 200);
+
+    var a = localStorage.getItem('a');
+    var b = localStorage.getItem('b');
+    console.log(a, b);
+
+
+    const [fgInput, bgInput] = document.querySelectorAll('input');
+    const [saveBtn, loadBtn] = document.querySelectorAll('button');
+    const textarea = document.querySelector('textarea');
+    saveBtn.onclick = () => {
+        localStorage.setItem('fg', fgInput.value);
+        localStorage.setItem('bg', bgInput.value);
+        alert('저장완료!')
+    }
+    loadBtn.onclick = () => {
+        textarea.style.color = localStorage.getItem('fg');
+        textarea.style.backgroundColor = localStorage.getItem('bg');
+        alert('불러오기완료!')
+    }
+    fgInput.onchange = () => {
+        textarea.style.color = fgInput.value;
+    }
+    bgInput.onchange = () => {
+        textarea.style.backgroundColor = bgInput.value;
+    }
+
+
+    
+
+
+
+
+
+
+</script>

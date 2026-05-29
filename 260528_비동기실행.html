@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>비동기 실행</title>
+</head>
+<body>
+    <h1>타이머</h1>
+    <div>
+        <button type="button">타이머(재)시작</button>
+        <button type="button">타이머 일시정지</button>
+        <button type="button">타이머 초기화</button>
+    </div>
+    <div>
+        <b class="hour">00</b>
+        <b>:</b>
+        <b class="min">50</b>
+        <b>:</b>
+        <b class="sec">50</b>
+    </div>
+
+
+
+
+</body>
+</html>
+<script>
+    // setTimeout: 일정한 ms 이후 함수가 실행됨
+    // setTimeout(함수, ms);
+    function timeout(){
+        console.log('set timeout이 실행되었음!');
+    }
+    // setTimeout(timeout, 2000); // 1초 뒤에 timeout을 실행하라.
+
+    // setInterval: 일정한 ms 마다 함수가 실행
+    // setInterval(함수, ms);
+    function interval(){
+        console.log('set interval이 실행되었음!');
+    }
+    // intervarId = setInterval(interval, 2000); // 2초마다 interval을 실행하라.
+    // clearInterval(intervarId);
+
+    /////////////////////////////////////////////////////////////////////
+    // 가져오는거 => get 성격, getter
+    // 설정하는거 => set 성격, setter
+    const [startBtn, pauseBtn, resetBtn] = document.querySelectorAll('button');
+    const hour = document.querySelector('.hour');
+    const min = document.querySelector('.min');
+    const sec = document.querySelector('.sec');
+    let timerId = null; // 실행되는 timer의 interval id
+
+    function timer(){
+        let nowSec = +sec.textContent + 1; // 현재 초를 가져와서 1초 올린다
+        let nowMin = +min.textContent; // 현재 분을 가져온다
+        let nowHour = +hour.textContent; // 현재 시를 가져온다
+        if(nowSec === 60){ // 60초가 되버렸네?
+            nowSec = 0; // 0초로 변경
+            nowMin++; // 1분 올린다
+        }
+        if(nowMin === 60){ // 60분이 되버렸네?
+            nowMin = 0; // 0분로 변경
+            nowHour++; // 1시간 올린다
+        }
+        // 현재 시간에 맞게 글자를 다시 넣어준다.
+        // '' + nowSec
+        sec.textContent = nowSec.toString().padStart(2, '0');
+        min.textContent = nowMin.toString().padStart(2, '0');
+        hour.textContent = nowHour.toString().padStart(2, '0');
+    }
+    startBtn.onclick = () => {
+        // startBtn.disabled = true;
+        // startBtn.onclick = null;
+        if(timerId === null){
+            // timer 함수를 1초마다 실행해줘
+            timerId = setInterval(timer, 100);
+        }
+    }
+    pauseBtn.onclick = () => {
+        clearInterval(timerId); // interval을 취소해라
+        timerId = null; // timerId 값도 초기화해서 다시 실행할 수 있도록
+    }
+    resetBtn.onclick = () => {
+        clearInterval(timerId); // interval을 취소해라
+        timerId = null; // timerId 값도 초기화해서 다시 실행할 수 있도록
+        sec.textContent = '00';
+        min.textContent = '00';
+        hour.textContent = '00';
+    }
+
+
+
+</script>
+
+
+
+
+
+
