@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>뱀게임</title>
+    <script src="뱀게임.js" defer></script>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .game_container{
+        width: 600px;
+        margin: 0 auto;
+    }
+    .game_container > h1{
+        text-align: center;
+    }
+    .game_container > h3{
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: red;
+        transform: translate(-50%, -50%);
+        font-size: 70px;
+        &.game_over{
+            display: block;
+        }
+    }
+</style>
+<body>
+    <div class="game_container">
+        <h1>SNAKE GAME</h1>
+        <div>
+            <span>SCORE:</span><b>0</b>
+        </div>
+        <canvas width="600" height="600"></canvas>
+        <h3 class="game_over">GAME OVER</h3>
+    </div>
+</body>
+</html>
